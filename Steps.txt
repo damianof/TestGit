@@ -10,11 +10,8 @@ vi post-receive
 
 #!/bin/sh
 read refname
-echo 'test: ' + $refname
-
 branch=$(git rev-parse --symbolic --abbrev-ref $refname)
 echo '---post-receive --- branch is: ' + $branch
-
 if [ "$branch" =  "master" ]; then
     echo '---post-receive --- branch is: master - ignoring it'
 fi
@@ -22,12 +19,10 @@ if [ "$branch" =  "alpha" ]; then
     echo '---post-receive --- branch is: alpha - deploying'
     git --work-tree=/usr/share/nginx/html/TestGit --git-dir=/usr/share/nginx/html/TestGit.git checkout -f alpha
     echo "$branch" >> /usr/share/nginx/html/TestGit/branch.txt
-    now="$(date +'%d/%m/%Y')"
-    echo "Last deployed at $now" >> /usr/share/nginx/html/TestGit/branch.txt
+    echo "Last deployed at $(date)" >> /usr/share/nginx/html/TestGit/branch.txt
     npm install --prefix /usr/share/nginx/html/TestGit
     pm2 restart TestGit
 fi
-
 (save)
 
 chmod +x post-receive
