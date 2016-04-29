@@ -15,10 +15,10 @@ echo 'test: ' + $refname
 branch=$(git rev-parse --symbolic --abbrev-ref $refname)
 echo '---post-receive --- branch is: ' + $branch
 
-if [ "$refname" =  "refs/heads/master" ]; then
+if [ "$branch" =  "master" ]; then
     echo '---post-receive --- branch is: master - ignoring it'
 fi
-if [ "$refname" =  "refs/heads/alpha" ]; then
+if [ "$branch" =  "alpha" ]; then
     echo '---post-receive --- branch is: alpha - deploying'
     git --work-tree=/usr/share/nginx/html/TestGit --git-dir=/usr/share/nginx/html/TestGit.git checkout -f alpha
     npm install --prefix /usr/share/nginx/html/TestGit
