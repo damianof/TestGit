@@ -9,24 +9,23 @@ cd hooks
 vi post-receive
 
 #!/bin/sh
+read refname
+echo $refname
+echo 'test'
 
+branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+echo '---post-receive --- branch is: "$refname"'
 
-echo "determining branch"
-if ! [ -t 0 ]; then
-  read -a ref
+if [ "$refname" =  "refs/heads/master" ]; then
+    echo '---post-receive --- branch is: master - ignoring it'
 fi
-IFS='/' read -ra REF <<< "${ref[2]}"
-branch="${REF[2]}"
-if [ "master" == "$branch" ]; then
-  echo 'master was pushed - ignoring'
+if [ "$refname" =  "refs/heads/alpha" ]; then
+    echo '---post-receive --- branch is: alpha - deploying'
+    git --work-tree=/usr/share/nginx/html/TestGit --git-dir=/usr/share/nginx/html/TestGit.git checkout -f alpha
+    npm install --prefix /usr/share/nginx/html/TestGit
+    pm2 restart TestGit
 fi
-
-if [ "alpha" == "$branch" ]; then
-  echo 'alpha was pushed - deploying'
-  git --work-tree=/usr/share/nginx/html/TestGit --git-dir=/usr/share/nginx/html/TestGit.git checkout -f alpha
-  npm install --prefix /usr/share/nginx/html/TestGit
-  pm2 restart TestGit
-fi
+done
 
 (save)
 
