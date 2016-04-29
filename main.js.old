@@ -1,6 +1,6 @@
 /*global process, require*/
 'use strict';
-const fs = require('fs');
+const git = require('git-rev');
 const http = require('http');
 
 const hostname = '127.0.0.1';
@@ -9,11 +9,7 @@ const port = 3333;
 let _branchName = 'XYZ';
 const _lastUpdated = 'April 29th at 14:52pm';
 
-fs.readFile('branch.txt', 'utf8', (err, str) => {
-	if (err){
-		throw err;
-	}
-	
+git.branch(function (str) {
 	console.log('branch', str);
 	_branchName = str;
 	
