@@ -1,0 +1,19 @@
+{
+	"name": "TestGit",
+	"version": "0.0.1",
+	"description": "TestGit",
+	"author": "Damiano Fusco",
+	"main": "main.js",
+	"scripts": {
+		"start": "node main",
+		"test": "mocha tests",
+		"cleanup": "rm -f *.log.txt",
+		"eslint": "eslint -c ./.eslintrc --ignore-path ./.eslintignore ."
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"chai": "2.1.1",
+		"mocha": "2.2.5"
+	}
+}
