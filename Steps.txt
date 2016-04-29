@@ -9,7 +9,7 @@ cd hooks
 vi post-receive
 
 #!/bin/sh
-git --work-tree=/usr/share/nginx/html/TestGit --git-dir=/usr/share/nginx/html/TestGit.git checkout -f
+git --work-tree=/usr/share/nginx/html/TestGit --git-dir=/usr/share/nginx/html/TestGit.git checkout -f alpha
 npm install --prefix /usr/share/nginx/html/TestGit
 pm2 restart TestGit
 
