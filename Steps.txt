@@ -10,6 +10,8 @@ vi post-receive
 
 #!/bin/sh
 git --work-tree=/usr/share/nginx/html/TestGit --git-dir=/usr/share/nginx/html/TestGit.git checkout -f
+/usr/share/nginx/html/TestGit npm install
+pm2 restart TestGit
 
 (save)
 
