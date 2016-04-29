@@ -9,15 +9,15 @@ const port = 3333;
 let _branchName = 'XYZ';
 const _lastUpdated = 'April 29th at 14:49pm';
 
-const server = http.createServer((req, res) => {
-	res.statusCode = 200;
-	res.setHeader('Content-Type', 'text/plain');
-	res.end('Code is from branch: ' + _branchName + '\nlast updated on: ' + _lastUpdated);
-});
-
 git.branch(function (str) {
 	console.log('branch', str);
 	_branchName = str;
+	
+	const server = http.createServer((req, res) => {
+		res.statusCode = 200;
+		res.setHeader('Content-Type', 'text/plain');
+		res.end('Code is from branch: ' + _branchName + '\nlast updated on: ' + _lastUpdated);
+	});
 	
 	server.listen(port, hostname, () => {
 		console.log(`Server running at http://${hostname}:${port}/ for branch ` + _branchName);
