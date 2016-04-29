@@ -10,6 +10,7 @@ vi post-receive
 
 #!/bin/sh
 
+
 echo "determining branch"
 if ! [ -t 0 ]; then
   read -a ref
