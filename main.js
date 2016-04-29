@@ -16,12 +16,10 @@ const server = http.createServer((req, res) => {
 });
 
 git.branch(function (str) {
-	console.log('branch', str)
+	console.log('branch', str);
 	_branchName = str;
 	
 	server.listen(port, hostname, () => {
 		console.log(`Server running at http://${hostname}:${port}/ for branch ` + _branchName);
 	});
-})
-
-
+});

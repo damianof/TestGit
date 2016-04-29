@@ -1,0 +1,23 @@
+ON SERVER
+
+cd /usr/share/nginx/html# 
+git clone --bare https://github.com/damianof/TestGit.git
+
+cd TestGit.git
+cd hooks
+
+vi post-receive
+
+#!/bin/sh
+git --work-tree=/usr/share/nginx/html/TestGit --git-dir=/usr/share/nginx/html/TestGit.git checkout -f
+
+(save)
+
+chmod +x post-receive
+
+
+
+
+
+LOCALLY -------
+git remote add live ssh://root@162.243.239.188/usr/share/nginx/html/TestGit.git
