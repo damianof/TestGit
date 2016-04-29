@@ -7,7 +7,7 @@ const hostname = '127.0.0.1';
 const port = 3333;
 
 let _branchName = 'XYZ';
-const _lastUpdated = 'April 29th at 14:49pm';
+const _lastUpdated = 'April 29th at 14:52pm';
 
 git.branch(function (str) {
 	console.log('branch', str);
