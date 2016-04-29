@@ -25,7 +25,6 @@ if [ "$refname" =  "refs/heads/alpha" ]; then
     npm install --prefix /usr/share/nginx/html/TestGit
     pm2 restart TestGit
 fi
-done
 
 (save)
 
