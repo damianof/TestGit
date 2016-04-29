@@ -16,8 +16,8 @@ git --work-tree=/usr/share/nginx/html/TestGit --git-dir=/usr/share/nginx/html/Te
 chmod +x post-receive
 
 
-
-
-
 LOCALLY -------
 git remote add live ssh://root@162.243.239.188/usr/share/nginx/html/TestGit.git
+git add .
+git commit -m "My project is ready"
+git push live master
