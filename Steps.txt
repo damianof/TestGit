@@ -13,7 +13,7 @@ read refname
 echo 'test: ' + $refname
 
 branch=$(git rev-parse --symbolic --abbrev-ref $refname)
-echo '---post-receive --- branch is: "$refname"'
+echo '---post-receive --- branch is: ' + $branch
 
 if [ "$refname" =  "refs/heads/master" ]; then
     echo '---post-receive --- branch is: master - ignoring it'
